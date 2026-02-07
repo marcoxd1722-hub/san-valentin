@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregunta Especial ❤️</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffeef0;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .corazon {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            background-color: #ff4b2b;
+            transform: rotate(-45deg);
+            animation: latido 1.2s infinite;
+            margin-bottom: 60px;
+        }
+
+        .corazon::before, .corazon::after {
+            content: "";
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: #ff4b2b;
+            border-radius: 50%;
+        }
+
+        .corazon::before { top: -40px; left: 0; }
+        .corazon::after { top: 0; left: 40px; }
+
+        @keyframes latido {
+            0% { transform: rotate(-45deg) scale(1); }
+            40% { transform: rotate(-45deg) scale(1.3); }
+            100% { transform: rotate(-45deg) scale(1); }
+        }
+
+        h1 {
+            color: #d63031;
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .contenedor-botones {
+            display: flex;
+            gap: 20px;
+            position: relative;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #btn-si {
+            background-color: #ff4b2b;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 75, 43, 0.4);
+        }
+
+        #btn-no {
+            background-color: #b2bec3;
+            color: white;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="corazon"></div>
+    <h1 id="pregunta">¿Quieres ser mi San Valentín?</h1>
+
+    <div class="contenedor-botones">
+        <button id="btn-si" class="btn" onclick="aceptar()">SÍ</button>
+        <button id="btn-no" class="btn" onmouseover="huir()" onclick="negar()">NO</button>
+    </div>
+
+    <script>
+        function aceptar() {
+            // Cambia el texto de la pregunta y oculta botones
+            document.getElementById('pregunta').innerHTML = "¡Sabía que lo harías mi amor, eres lo mejor de mi vida! ❤️";
+            document.querySelector('.contenedor-botones').style.display = 'none';
+            document.querySelector('.corazon').style.animationDuration = '0.5s'; // El corazón late más rápido de alegría
+        }
+
+        function huir() {
+            // El botón NO se mueve a una posición aleatoria cuando el mouse se acerca
+            const btnNo = document.getElementById('btn-no');
+            const x = Math.random() * (window.innerWidth - btnNo.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btnNo.offsetHeight);
+            
+            btnNo.style.position = 'absolute';
+            btnNo.style.left = x + 'px';
+            btnNo.style.top = y + 'px';
+        }
+
+        function negar() {
+            // En caso de que logren darle clic al NO (en celulares a veces pasa)
+            alert("Regresa y di que sí 😜");
+        }
+    </script>
+
+</body>
+</html>
